@@ -17,6 +17,17 @@ class Course < ApplicationRecord
   foreign_key: :course_id,
   class_name: :Enrollment
 
+  belongs_to :parent_course,
+  foreign_key: :prereq_id,
+  class_name: :Course,
+  optional: true
+
+  belongs_to :instructor,
+  primary_key: :id,
+  foreign_key: :instructor_id,
+  class_name: :User,
+  optional: true
+
   has_many :students, through: :enrollments, source: :student
 
 
